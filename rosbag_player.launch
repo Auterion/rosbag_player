@@ -1,0 +1,18 @@
+<launch>
+
+  <arg name="bag_name" default="/not_specified_bag_name" />
+  <arg name="image_distance" default="8" />
+  <rosparam> use_sim_time: true </rosparam>
+
+  
+
+  
+    <node pkg="rviz" type="rviz" name="rviz_textured_quads"
+      args="-d $(find rosbag_player)/rosbag_play.rviz"
+      output="screen"/>
+      
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg bag_name)" required="true"/>
+    
+      <node name="rosbag_player_node" pkg="rosbag_player" type="rosbag_player_node" output="screen" />
+
+</launch>
